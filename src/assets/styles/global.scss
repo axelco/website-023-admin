@@ -23,3 +23,15 @@ h1,.h1, h2, .h2, h3, .h3{
     background-color: $black;
 
 }
+
+.form-control{
+    background: transparent;
+    border-color: $gray-600;
+    color: $gray-400;
+
+    &:focus{
+        background: transparent;
+        border-color: $white;
+    }
+
+}

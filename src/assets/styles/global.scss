@@ -1,0 +1,25 @@
+@import './_theming.scss';
+
+// We load bs scss all at once.
+@import "bootstrap/scss/bootstrap";
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+body {
+    background-color: $dark;
+    color: $gray-400;
+    font-weight: 300;
+}
+
+h1,.h1, h2, .h2, h3, .h3{
+    color: $gray-300;
+    font-weight: 700;
+}
+
+.btn-link{
+    color: $gray-400;
+}
+
+.offcanvas{
+    background-color: $black;
+
+}

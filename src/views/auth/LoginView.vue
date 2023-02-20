@@ -59,7 +59,7 @@
                         class="alert alert-warning mb-2"
                         v-if="state.formStatus.error !== null"
                     >
-                        Tune peux pas te connecter... 
+                        Tu ne peux pas te connecter... 
                     
                     </div>                
                     <h1>Se connecter à l'admin</h1>

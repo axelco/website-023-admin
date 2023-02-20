@@ -1,20 +1,54 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/",
-      name: "home",
-      component: HomeView,
-    },
+      path: '/auth',
+      component: () => import('../views/AuthView.vue'),
+      redirect: {name: 'login'},
+      children: [
+        { 
+          path: 'login', 
+          name :'login', 
+          component:() => import('../views/auth/LoginView.vue'),
+          meta : {
+            public: true,
+          }
+        },             
+      ],
+    },    
     {
-      path: "/about",
-      name: "about",
-      component: () => import("../views/AboutView.vue"),
-    },
+      path: '/app',
+      component: () => import('../views/AppView.vue'),
+      redirect: {name: 'home'},
+      children: [
+        { 
+          path: 'home', 
+          name :'home', 
+          component:() => import('../views/app/HomeView.vue'),
+        },             
+      ],
+    },  
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: {name: 'home'},
+    },       
+  
   ],
 });
+
+router.beforeEach((to, from, next)=>{
+
+  const loggedIn = localStorage.getItem('user');
+  // trying to access a restricted page + not logged in
+  // redirect to login page
+  if (!to.meta.public && !loggedIn) {
+    next('/auth/login');
+  } else {
+    next();
+  }
+
+})
 
 export default router;

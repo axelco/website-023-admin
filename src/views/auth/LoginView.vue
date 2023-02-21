@@ -32,7 +32,7 @@
             (res) =>{ 
                 state.formStatus.submitting = false
                 state.formStatus.error = null
-                localStorageServece.setUser(res.data.token)
+                localStorageServece.setUserToken(res.data.token)
                 router.push({name : 'home'})
             }
         )

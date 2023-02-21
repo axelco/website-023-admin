@@ -3,7 +3,7 @@
     import { reactive } from "vue";
     import { useRouter } from "vue-router";
     import authService from '@/services/auth.service'
-    import localStorageServece from "@/services/localstorage.service"
+    import localStorageService from "../../services/localStorage.service";
 
     import UiContainer from "@/components/ui/UiContainer.vue"
     import UiSpinner from "@/components/ui/UiSpinner.vue"
@@ -32,7 +32,10 @@
             (res) =>{ 
                 state.formStatus.submitting = false
                 state.formStatus.error = null
-                localStorageServece.setUserToken(res.data.token)
+                console.log(res.data.token)
+                localStorageService.setUserToken(res.data.token)
+                // localStorage.setItem("user", res.data.token)
+                console.log(localStorage)
                 router.push({name : 'home'})
             }
         )

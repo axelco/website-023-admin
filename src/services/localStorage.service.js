@@ -7,6 +7,7 @@ class LocalStorageService{
 
     setUserToken(token){
         localStorage.setItem(USER, token)
+        console.log(this.getUserToken())
     }
     
 }

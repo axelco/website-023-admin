@@ -41,8 +41,6 @@ const router = createRouter({
 router.beforeEach((to, from, next)=>{
 
   const loggedIn = localStorage.getItem('user');
-  // trying to access a restricted page + not logged in
-  // redirect to login page
   if (!to.meta.public && !loggedIn) {
     next('/auth/login');
   } else {

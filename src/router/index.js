@@ -42,7 +42,17 @@ const router = createRouter({
           path: 'company/edit/:id', 
           name :'editCompany', 
           component:() => import('../views/app/CompanyView.vue'),
-        },                                    
+        }, 
+        { 
+          path: 'job/add', 
+          name :'addJob', 
+          component:() => import('../views/app/JobView.vue'),
+        },     
+        { 
+          path: 'job/edit/:id', 
+          name :'editJob', 
+          component:() => import('../views/app/JobView.vue'),
+        },                                           
       ],
     },  
     {

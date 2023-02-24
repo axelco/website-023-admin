@@ -18,6 +18,22 @@ class ExperiencesService {
         return api.post(`/resume/job-companies`, data)
     }
 
+    getJobs(){
+        return api.get(`/resume/jobs`)
+    }  
+    
+    getSingleJob(id){
+        return api.get(`/resume/jobs/${id}`)
+    }
+
+    editJob(data, id){
+        return api.put(`/resume/jobs/${id}`, data)
+    }
+
+    addJob(data){
+        return api.post(`/resume/jobs`, data)
+    }    
+
 }
 
 export default new ExperiencesService()

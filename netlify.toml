@@ -1,0 +1,8 @@
+[context.production.environment]
+VUE_APP_API_URI = "https://arozec-prod.herokuapp.com/"
+
+    [context.branch-deploy.environment]
+    VUE_APP_API_URI = "https://arozec-staging.herokuapp.com/"
+
+        [context.staging.environment]
+        VUE_APP_API_URI = "https://arozec-staging.herokuapp.com/"

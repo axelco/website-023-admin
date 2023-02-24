@@ -3,7 +3,7 @@
     import { useRoute,useRouter } from 'vue-router';
     import experiencesService from './../../services/experiences.service'
 
-    import UiSection from '@/components/ui/Uisection.vue'
+    import UiSection from '@/components/ui/UiSection.vue'
     import UiContainer from '@/components/ui/UiContainer.vue'    
 
     const route = useRoute()

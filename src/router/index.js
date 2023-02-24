@@ -27,7 +27,22 @@ const router = createRouter({
           path: 'home', 
           name :'home', 
           component:() => import('../views/app/HomeView.vue'),
-        },             
+        },   
+        { 
+          path: 'experiences', 
+          name :'experiences', 
+          component:() => import('../views/app/ExperiencesView.vue'),
+        },     
+        { 
+          path: 'company/add', 
+          name :'addCompany', 
+          component:() => import('../views/app/CompanyView.vue'),
+        },     
+        { 
+          path: 'company/edit/:id', 
+          name :'editCompany', 
+          component:() => import('../views/app/CompanyView.vue'),
+        },                                    
       ],
     },  
     {

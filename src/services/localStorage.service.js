@@ -9,6 +9,10 @@ class LocalStorageService{
         localStorage.setItem(USER, token)
         console.log(this.getUserToken())
     }
+
+    destroyUserToken(){
+        localStorage.removeItem(USER)
+    }
     
 }
 

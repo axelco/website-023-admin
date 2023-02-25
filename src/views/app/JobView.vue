@@ -2,6 +2,7 @@
     import { onMounted, reactive, computed } from 'vue';
     import { useRoute,useRouter } from 'vue-router';
     import experiencesService from './../../services/experiences.service'
+    import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
     import UiSection from '@/components/ui/UiSection.vue'
     import UiContainer from '@/components/ui/UiContainer.vue'    
@@ -20,6 +21,9 @@
             endDate: "",
             shortDescription : "",
             contractType: "",
+            missionsContent : '',
+            successContent: '',
+
         },
         companiesList : {
             items : [],
@@ -27,7 +31,11 @@
         },
         savingData : false,
         saved : false,
-        contractsList : ['cdd', 'cdi', 'stage']
+        contractsList : ['cdd', 'cdi', 'stage'],
+        editor : {
+            theme  : ClassicEditor,
+            config : {},
+        },         
     })    
 
     onMounted(()=>{
@@ -49,6 +57,7 @@
     })
 
     const submitForm = (event) => {
+
         if(state.formData.name !== ""){
             
             if(state.mode === "edit"){
@@ -76,34 +85,34 @@
 
     const fetchJob = () => {
         experiencesService.getSingleJob(state.jobId)
-                .then(
-                    (res)=>{
-                        state.formData  = res.data
+        .then(
+            (res)=>{
+                state.formData  = res.data
 
-                        // On modifie la valeur de company par son id et non l'objet entier
-                        state.formData.company = res.data.company._id
-                        
-                        // On transforme la date de début renvoyée pour être lisible côté front
-                        if(state.formData.startDate){
-                            let startDate = new Date(state.formData.startDate)
-                            state.formData.startDate = startDate.toISOString().split('T')[0]
-                                                        
-                        }
-                        // On transforme la date de find renvoyée pour être lisible côté front
-                        if(state.formData.endDate){
-                            let endDate = new Date(state.formData.endDate)
-                            state.formData.endDate = endDate.toISOString().split('T')[0]
-                                                        
-                        }                         
-                        console.log(state.formData)
-                    }
-                ).catch(
-                    (error)=>{
-                        console.error(error)
-                        router.push({name : 'experiences'})
+                // On modifie la valeur de company par son id et non l'objet entier
+                state.formData.company = res.data.company._id
+                
+                // On transforme la date de début renvoyée pour être lisible côté front
+                if(state.formData.startDate){
+                    let startDate = new Date(state.formData.startDate)
+                    state.formData.startDate = startDate.toISOString().split('T')[0]
+                                                
+                }
+                // On transforme la date de find renvoyée pour être lisible côté front
+                if(state.formData.endDate){
+                    let endDate = new Date(state.formData.endDate)
+                    state.formData.endDate = endDate.toISOString().split('T')[0]
+                                                
+                }                         
 
-                    }
-                )        
+            }
+        ).catch(
+            (error)=>{
+                console.error(error)
+                router.push({name : 'experiences'})
+
+            }
+        )        
     }
 
     const fetchCompaniesList = () => {
@@ -250,11 +259,29 @@
                         >
                             {{ state.formData.shortDescription }}
                         </textarea> 
-                    </div>                                                                  
+                    </div>  
+                    <div class="col-12 mb-2 col-lg-6">
+                        <label 
+                            class="form-label"
+                        >🚀 Succès</label>
+                        <ckeditor 
+                        :editor="state.editor.theme" 
+                        v-model="state.formData.successContent" 
+                        :config="state.editor.config"></ckeditor>                    
+                    </div>                      
+                    <div class="col-12 mb-2 col-lg-6">
+                        <label 
+                            class="form-label"
+                        >📐 Missions</label>
+                        <ckeditor 
+                        :editor="state.editor.theme" 
+                        v-model="state.formData.missionsContent" 
+                        :config="state.editor.config"></ckeditor>                    
+                    </div>                                                                
                 </div>
 
 
-                <div>
+                <div class="mt-2 mt-lg-3">
                     <button type="submit"
                         class="btn btn-lg btn-primary"
                         :disabled="state.savingData"
@@ -273,3 +300,13 @@
 
 
 </template>
+
+<style lang="scss">
+
+
+.ck-editor__editable{
+    min-height: 200px;
+    max-height: 500px;
+    overflow-y: auto !important;
+}
+</style>

@@ -4,7 +4,6 @@
     import experiencesService from './../../services/experiences.service'
     import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-    import UiSection from '@/components/ui/UiSection.vue'
     import UiContainer from '@/components/ui/UiContainer.vue'    
 
     const route = useRoute()
@@ -154,7 +153,7 @@
 </script>
 
 <template>
-    <UiSection size="md" >
+    <div >
         <UiContainer size="md" >
             <button 
                 class="btn btn-link"
@@ -296,7 +295,7 @@
                 </div>                           
             </form>
         </UiContainer>
-    </UiSection>
+    </div>
 
 
 </template>

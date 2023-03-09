@@ -39,6 +39,7 @@
                 :to="{name: `editJob`, params : {id: item._id}}" 
                 class="btn btn-link"
             >Editer</RouterLink>    
+
             
         </li>
     </ul>
